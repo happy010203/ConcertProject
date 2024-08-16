@@ -5,7 +5,23 @@ const Area = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedSection, setSelectedSection] = useState(null);
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [remainingSeats, setRemainingSeats] = useState({ A: 20, B: 15, C: 15, D: 30, E: 20 });
+    const [remainingSeats, setRemainingSeats] = useState({});
+    // const [remainingSeats, setRemainingSeats] = useState({ A: 20, B: 15, C: 15, D: 30, E: 20 });
+    const [reservedSeats, setReservedSeats] = useState([]);
+
+    useEffect(() => {
+      // remaining seats Fetch
+      fetch('http://localhost:8080/api/v1/seats')
+          .then(response => response.json())
+          .then(data => setRemainingSeats(data))
+          .catch(error => console.error('Error fetching remaining seats:', error));
+
+      // reserved seats Fetch
+      fetch('http://localhost:8080/api/v1/seats')
+          .then(response => response.json())
+          .then(data => setReservedSeats(data))
+          .catch(error => console.error('Error fetching reserved seats:', error));
+    }, []);
   
     const showSeats = (section) => {
         setSelectedSection(section); // 先設置區域
@@ -46,7 +62,7 @@ const Area = () => {
           alert(`確認座位為: ${selectedSeats.join(' 、 ')}`);
           window.location.href = 'https://httpbin.org/';
         } else {
-          alert('您無選擇座位，請重新選擇。');
+          alert('您尚未選擇座位，請重新選擇。');
         }
     };
 
@@ -61,7 +77,7 @@ const Area = () => {
     };
 
     const renderSeats = () => {
-      const reservedSeats = ['A1-1', 'A1-2', 'A1-3', 'A1-4']; // 從後端獲取
+      // const reservedSeats = ['A1-1', 'A1-2', 'A1-3', 'A1-4']; // 從後端獲取
   
       let rows, cols;
       switch (selectedSection) {
@@ -110,7 +126,7 @@ const Area = () => {
   
     return (
       <div className="seating-chart">
-        <div className="stage">舞台</div>
+        <div className="stage">舞台 / 電影布幕</div>
         <div className="section section-a" onClick={() => showSeats('A')}>A區</div>
         <div className="section section-b" onClick={() => showSeats('B')}>B區</div>
         <div className="section section-c" onClick={() => showSeats('C')}>C區</div>
