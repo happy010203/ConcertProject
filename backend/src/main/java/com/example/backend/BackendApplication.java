@@ -22,7 +22,7 @@ public class BackendApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 定义了哪些 URL 模式需要应用 CORS 配置
                         .allowedOrigins("http://localhost:3000") // 允许的前端地址
-                        .allowedMethods("*"); // 允许的 HTTP 方法
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS"); // 允许的 HTTP 方法
             }
         };
     }
