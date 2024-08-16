@@ -12,8 +12,9 @@ import jakarta.persistence.Table;
 @Entity 
 @Table(name = "movie")  
 public class Cinema {
- @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+    @Column(name="movie_id", length = 11)
+    @GeneratedValue(strategy = GenerationType.AUTO)
  private Long id;
 
  @Column(name = "title")

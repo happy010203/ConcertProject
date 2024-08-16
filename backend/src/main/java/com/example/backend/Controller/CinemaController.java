@@ -25,4 +25,9 @@ public class CinemaController {
         return cinemaRepo.findAll(); // 使用 cinemaRepo 的 findAll() 方法來查詢數據庫，並返回所有的 Cinema 實體。
     }
     
+    @PostMapping(path = "/seats") 
+    public List<Cinema> getSeats() { 
+        return cinemaRepo.findAll(); 
+    }
+    
 }
