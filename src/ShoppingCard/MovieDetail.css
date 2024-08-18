@@ -1,0 +1,94 @@
+/* 电影详细内容的包装器 */
+.movieDetailWrapper {
+    max-width: 1200px; /* 最大宽度 */
+    margin: 0 auto; /* 居中对齐 */
+    padding: 20px; /* 内边距 */
+}
+
+/* 电影详细内容卡片 */
+.movieDetailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 电影详细内容布局 */
+.movieDetailContent {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 100%; /* 自适应宽度 */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+/* 图片样式 */
+.img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* 电影信息样式 */
+.movieInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* 电影详细信息项 */
+.movieDetailItem {
+    margin: 5px 0; /* 上下外边距为 5 像素，左右外边距为 0 */
+    font-size: 20px; /* 字体大小为 20 像素 */
+    width: 100%; /* 宽度占满父容器的 100% */
+    max-width: 100%; /* 最大宽度为父容器的 100% */
+    white-space: normal; /* 允许文本正常换行 */
+    overflow-wrap: break-word; /* 确保长单词在边界处断行 */
+    line-height: 1.5; /* 行高设置为 1.5，提高文本的可读性 */
+}
+
+/* 返回链接样式 */
+.backLink {
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .movieDetailContent {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img {
+        width: 100%;
+        height: auto;
+    }
+
+    .movieDetailItem {
+        width: 100%;
+        font-size: 18px;
+    }
+}
+
+/* 电影详细信息项 hover 效果 */
+.movieDetailItem:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
