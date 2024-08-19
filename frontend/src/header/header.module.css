@@ -7,7 +7,7 @@
     background: black;
     padding: 15px 7%;
     box-sizing: border-box;
-    color:#f8f8f8;
+    color: #f8f8f8;
 }
 
 /* logo: 設定 logo 的樣式和大小，讓其具有點擊性 */
@@ -63,12 +63,27 @@ ul li {
     cursor: pointer;
 }
 
+/* user-actions: 設定用戶操作區域的樣式，包含 CART 和 MY ACCOUNT 的按鈕樣式 */
 .user-actions a {
     margin-right: 10px; /* CART 和 MY ACCOUNT 之間的間隔 */
 }
 
 .user-actions a:last-child {
     margin-right: 0; /* 最後一個元素不需要右邊距 */
+}
+
+/* search-results: 設定搜尋結果模態視窗的樣式 */
+.search-results {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; /* 使模態視窗在最前 */
+    background-color: rgba(0, 0, 0, 0.5); /* 灰色背景半透明 */
 }
 
 /* 媒體查詢：適用於螢幕寬度小於 850px 的情況，調整導航列字體大小 */
