@@ -8,6 +8,14 @@ const Area = () => {
     const [remainingSeats, setRemainingSeats] = useState({});
     // const [remainingSeats, setRemainingSeats] = useState({ A: 20, B: 15, C: 15, D: 30, E: 20 });
     const [reservedSeats, setReservedSeats] = useState([]);
+     // 定義每個區域的座位價格
+    const seatPrices = {
+      A: 300,
+      B: 250,
+      C: 250,
+      D: 200,
+      E: 150
+    };
 
     useEffect(() => {
       // remaining seats Fetch
@@ -17,10 +25,13 @@ const Area = () => {
           .catch(error => console.error('Error fetching remaining seats:', error));
 
       // reserved seats Fetch
-      fetch('http://localhost:8080/api/v1/seats')
-          .then(response => response.json())
-          .then(data => setReservedSeats(data))
-          .catch(error => console.error('Error fetching reserved seats:', error));
+        fetch('http://localhost:8080/api/v1/seats')
+        .then(response => response.json())
+        .then(data => {
+          const seatIds = data.map(seat => seat.seatId);
+          setReservedSeats(seatIds);
+        })
+        .catch(error => console.error('Error fetching reserved seats:', error));
     }, []);
   
     const showSeats = (section) => {
@@ -59,8 +70,42 @@ const Area = () => {
       
     const checkoutSeats = () => {
         if (selectedSeats.length > 0) {
-          alert(`確認座位為: ${selectedSeats.join(' 、 ')}`);
-          window.location.href = 'https://httpbin.org/';
+          // 計算總金額
+          const totalAmount = selectedSeats.reduce((total, seatId) => {
+            const section = seatId[0]; // 座位ID的第一個字母代表區域
+            return total + seatPrices[section];
+          }, 0);
+
+           // 組裝要傳送至後端的資料
+          const payload = {
+            seats: selectedSeats,
+            amount: totalAmount,
+            cinemaId: 1,  // 這裡假設使用的是cinemaId 1，根據你的需求進行調整
+            movieId: 1,   // 這裡假設使用的是movieId 1，根據你的需求進行調整
+          };
+
+          // 使用 Fetch API 傳送資料到後端
+          fetch('http://localhost:8080/api/v1/tickets', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload),
+          })
+          .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+              alert(`座位確認成功！您的座位為: ${selectedSeats.join(' 、 ')}\n總金額為: ${totalAmount} 元`);
+              window.location.href = 'https://httpbin.org/'; // 結帳成功後導向的頁面
+          })
+          .catch(error => {
+            console.error('Error saving tickets:', error);
+            alert('座位儲存失敗，請稍後再試。');
+          });
         } else {
           alert('您尚未選擇座位，請重新選擇。');
         }
@@ -126,7 +171,7 @@ const Area = () => {
   
     return (
       <div className="seating-chart">
-        <div className="stage">舞台 / 電影布幕</div>
+        <div className="stage">電影布幕</div>
         <div className="section section-a" onClick={() => showSeats('A')}>A區</div>
         <div className="section section-b" onClick={() => showSeats('B')}>B區</div>
         <div className="section section-c" onClick={() => showSeats('C')}>C區</div>
