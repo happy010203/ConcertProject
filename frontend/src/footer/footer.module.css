@@ -50,7 +50,8 @@
 
 /* 設置社交媒體圖標的大小 */
 .socialMedia img {
-    width: 80%;
+    width: 30px;
+    margin: 5px;
 }
 
 /* 設置區塊標題的樣式，包括字體大小和行高 */

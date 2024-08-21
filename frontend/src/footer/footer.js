@@ -16,7 +16,7 @@ const Footer = () => {
                 <div className={styles.sbFooterLinks}>
                     {/* "For Business" 區塊，包含多個鏈接 */}
                     <div className={styles.sbFooterLinksDiv}>
-                        <h4>For Business</h4>
+                        <h4>關於我們</h4>
                         <a href="/employer" className={styles.link}>
                             <p>Employer</p>
                         </a>
@@ -25,26 +25,6 @@ const Footer = () => {
                         </a>
                         <a href="/individual" className={styles.link}>
                             <p>Individual</p>
-                        </a>
-                    </div>
-                    {/* "Resources" 區塊，包含多個鏈接 */}
-                    <div className={styles.sbFooterLinksDiv}>
-                        <h4>Resources</h4>
-                        <a href="/resources" className={styles.link}>
-                            <p>Resources center</p>
-                        </a>
-                        <a href="/resources" className={styles.link}>
-                            <p>Testimonials</p>
-                        </a>
-                        <a href="/resources" className={styles.link}>
-                            <p>STV</p>
-                        </a>
-                    </div>
-                    {/* "Partners" 區塊，包含單個鏈接 */}
-                    <div className={styles.sbFooterLinksDiv}>
-                        <h4>Partners</h4>
-                        <a href="/employer" className={styles.link}>
-                            <p>Swing Tech</p>
                         </a>
                     </div>
                     {/* "Company" 區塊，包含多個鏈接 */}
@@ -77,19 +57,6 @@ const Footer = () => {
 
                 {/* 分隔線 */}
                 <hr />
-
-                {/* 頁腳底部區塊，包含版權信息和條款鏈接 */}
-                <div className={styles.sbFooterBelow}>
-                    <div className={styles.sbFooterCopyright}>
-                        <p>@{new Date().getFullYear()} CodeInn. All rights reserved.</p>
-                    </div>
-                    <div className={styles.sbFooterBelowLinks}>
-                        <a href="/terms" className={styles.link}><div><p>Terms & Conditions</p></div></a>
-                        <a href="/privacy" className={styles.link}><div><p>Privacy</p></div></a>
-                        <a href="/security" className={styles.link}><div><p>Security</p></div></a>
-                        <a href="/cookie" className={styles.link}><div><p>Cookie Declaration</p></div></a>
-                    </div>
-                </div>
             </div>
         </div>
     );

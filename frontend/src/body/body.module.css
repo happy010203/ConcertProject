@@ -1,34 +1,32 @@
 /* 主體區域樣式 */
 .bodyDiv {
     min-height: 700px; /* 確保初始高度 */
-    background-image: url('../assets/images/background.jpg');
-    background-size: cover;
-    background-position: center;
+    background-color: rgb(180, 180, 180);
     padding: 20px;
     overflow-y: auto; /* 允許垂直滾動 */
 }
 
 /* 購票資訊區塊的樣式（未修改的部分） */
-.ticketSection {
+.moviesSection {
     margin-bottom: 40px;
 }
 
-.ticketSection h2 {
+.moviesSection h2 {
     color: white;
     text-align: center;
 }
 
 /* 輪播的樣式（未修改的部分） */
-.ticketSlider {
+.moviesSlider {
     max-width: 80%;
     margin: 0 auto;
 }
 
-.ticketItem {
+.moviesItem {
     text-align: center;
 }
 
-.ticketItem h3 {
+.moviesItem h3 {
     color: #00aced;
     margin-top: 10px;
 }
@@ -99,7 +97,7 @@
 }
 
 /* 統一圖片大小及顯示方式（未修改的部分） */
-.ticketList img, 
+.moviesList img, 
 .newsItem img {
     width: 300px;      /* 設置統一的寬度 */
     height: 200px;     /* 設置統一的高度 */
@@ -116,11 +114,11 @@
 
 /* 媒體查詢：適用於螢幕寬度小於 850px 的情況，調整區塊佈局（未修改的部分） */
 @media screen and (max-width: 850px) {
-    .ticketSection h2,
+    .moviesSection h2,
     .newsSection h2 {
         font-size: 24px;
     }
-    .ticketList img,
+    .moviesList img,
     .newsItem img {
         width: 250px;
         height: 150px;
@@ -129,11 +127,11 @@
 
 /* 媒體查詢：適用於螢幕寬度小於 550px 的情況，進一步調整區塊佈局（未修改的部分） */
 @media screen and (max-width: 550px) {
-    .ticketSection h2,
+    .moviesSection h2,
     .newsSection h2 {
         font-size: 20px;
     }
-    .ticketList img,
+    .moviesList img,
     .newsItem img {
         width: 200px;
         height: 120px;
@@ -142,11 +140,11 @@
 
 /* 媒體查詢：適用於螢幕寬度小於 400px 的情況，調整文字大小（未修改的部分） */
 @media screen and (max-width: 400px) {
-    .ticketSection h2,
+    .moviesSection h2,
     .newsSection h2 {
         font-size: 18px;
     }
-    .ticketList img,
+    .moviesList img,
     .newsItem img {
         width: 150px;
         height: 100px;
