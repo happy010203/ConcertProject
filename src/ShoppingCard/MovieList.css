@@ -28,6 +28,7 @@
 }
 
 /* 設定圖片樣式 */
+<<<<<<< HEAD
 .imgMovieList {
     width: 300px;
     height: 300px;
@@ -58,4 +59,11 @@
 
 .btn:focus {
     outline: none; /* 去掉焦点边框 */
+=======
+.img {
+    width: 100%; /* 图片宽度填满容器 */
+    height: 300px; /* 固定高度 */
+    object-fit: cover; /* 保持宽高比并填满容器 */
+    border-radius: 4px; /* 圆角 */
+>>>>>>> dbf72cc46620287e0ac4637085a212c327096ee5
 }

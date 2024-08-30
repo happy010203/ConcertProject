@@ -46,7 +46,11 @@ export default function QuantityBtn({movieInfo}) {
 
     //減少
     const handleSubtract = () => {
+<<<<<<< HEAD
         if(cartItems[movieIndexInCart].quantity===1){
+=======
+        if(cartItems[movieIndexInCart].quantity==1){
+>>>>>>> dbf72cc46620287e0ac4637085a212c327096ee5
             //購物車只剩一件，再減一為0的話，要刪去整個object
             let newCartArray = [...cartItems]
             //在產品index位刪除element
