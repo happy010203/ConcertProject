@@ -1,0 +1,51 @@
+/* ShowMovieAndTime.css */
+
+.cinema-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cinema-buttons button {
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid #A020F0;
+    color: #A020F0;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* 增加过渡效果 */
+}
+
+.cinema-buttons button:hover {
+    background-color: #A020F0;
+    color: #FFFFFF;
+}
+
+.showtimes {
+    margin-top: 20px;
+}
+
+.showtime-group {
+    margin-bottom: 20px; /* 控制每组之间的间距 */
+    border: 1px solid #ddd; /* 为每个组添加边框以区分 */
+    padding: 10px; /* 为每个组添加内边距 */
+    background-color: #f9f9f9; /* 为每个组添加背景色 */
+    border-radius: 5px; /* 添加圆角 */
+}
+
+.showtime-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 使元素在主轴上分布 */
+    gap: 10px; /* 控制元素之间的间距 */
+    padding: 5px 0; /* 控制内容的上下内边距 */
+}
+
+.showtime {
+    border-bottom: 1px solid #A020F0;
+    padding: 10px 0;
+}
+
+.showtime-info > div {
+    flex: 1;
+    text-align: center; /* 居中对齐内容 */
+}
