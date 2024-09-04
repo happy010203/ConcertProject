@@ -1,13 +1,7 @@
 import React, { useContext } from 'react'
 import Titles from './Titles'
 import { Link } from 'react-router-dom'
-<<<<<<< HEAD
 import { CartContext } from '../CartContext'
-=======
-import QuantityBtn from './QuantityBtn'
-import { CartContext } from '../CartContext'
-import MovieList from './MovieList'
->>>>>>> dbf72cc46620287e0ac4637085a212c327096ee5
 import './Checkout.css'
 
 export default function CheckOut() {

@@ -26,9 +26,9 @@ export default function QuantityBtn({movieInfo}) {
             //購物車沒有該產品，在cartItems array中加新的element(object)
             setCartItems([ //生成新的array返回setCartItems
                 {
-                    id : movieInfo.id,
-                    name : movieInfo.name,
-                    image : movieInfo.image,
+                    id : movieInfo.movie_id,
+                    name : movieInfo.title,
+                    image : movieInfo.img,
                     price : movieInfo.price,
                     quantity : 1
                 },
@@ -46,11 +46,7 @@ export default function QuantityBtn({movieInfo}) {
 
     //減少
     const handleSubtract = () => {
-<<<<<<< HEAD
         if(cartItems[movieIndexInCart].quantity===1){
-=======
-        if(cartItems[movieIndexInCart].quantity==1){
->>>>>>> dbf72cc46620287e0ac4637085a212c327096ee5
             //購物車只剩一件，再減一為0的話，要刪去整個object
             let newCartArray = [...cartItems]
             //在產品index位刪除element
