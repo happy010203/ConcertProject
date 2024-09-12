@@ -1,6 +1,9 @@
 package com.example.backend.Controller;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,26 +11,93 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.Entity.Cinema;
-import com.example.backend.Repo.CinemaRepo;
+import com.example.backend.DTO.LoginDTO;
+import com.example.backend.DTO.TokenDTO;
+import com.example.backend.DTO.UserDTO;
+import com.example.backend.Entity.Movie;
+import com.example.backend.Entity.News;
+import com.example.backend.Repo.MovieRepo;
+import com.example.backend.Repo.NewsRepo;
+import com.example.backend.Service.CustomUserDetailsService;
+import com.example.backend.Service.MovieService;
+import com.example.backend.Service.UserService;
 
-@RestController // 標記這個類為一個 REST 控制器，將會處理 HTTP 請求，並且方法的返回值會自動轉換為 JSON 或 XML 格式。
-@RequestMapping("api/v1") // 指定這個控制器中所有方法的路徑前綴，這裡是 "api/v1"，表示該控制器處理的 URL 路徑會以 "/api/v1" 開頭。
+@RestController
+@RequestMapping("/api/movie")
 public class CinemaController {
 
-    @Autowired // 自動注入 CinemaRepo 類型的 bean，CinemaRepo 是用來訪問數據庫的存儲庫接口，通常用於執行 CRUD 操作。
-    private CinemaRepo cinemaRepo;
+	@Autowired
+	private MovieRepo movieRepo;
+	
+	@Autowired
+	private NewsRepo newsRepo;
 
-    @GetMapping(path = "/movies") // 映射 HTTP GET 請求到這個方法，並指定路徑為 "/api/v1/movies"。
-    public List<Cinema> getConcerts() { // 定義一個返回類型為 List<Cinema> 的方法，用來返回一個電影列表。
-        return cinemaRepo.findAll(); // 使用 cinemaRepo 的 findAll() 方法來查詢數據庫，並返回所有的 Cinema 實體。
-    }
-    
-    @PostMapping(path = "/seats") 
-    public List<Cinema> getSeats() { 
-        return cinemaRepo.findAll(); 
-    }
-    
+	@Autowired
+	private MovieService movieService;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
+
+	/**
+	 * 获取所有电影
+	 * 
+	 * @return 电影列表
+	 */
+	@GetMapping("/movies")
+	public List<Movie> getMovies() {
+		return movieRepo.findAll();
+	}
+	
+	@GetMapping("/news")
+	public List<News> getNews() {
+		return newsRepo.findAll();
+	}
+
+	/**
+	 * 根据标题或导演搜索电影
+	 * 
+	 * @param keyword 搜索关键字
+	 * @return 电影列表
+	 */
+	@GetMapping("/search")
+	public List<Movie> searchByTitleOrDirector(@RequestParam String keyword) {
+		return movieService.searchByTitleOrDirector(keyword);
+	}
+
+	/**
+	 * 用户注册
+	 * 
+	 * @param user 用户数据传输对象
+	 * @return 响应消息
+	 */
+	@PostMapping("/register")
+	public ResponseEntity<Map<String, String>> saveUser(@RequestBody UserDTO user) {
+		Map<String, String> response = new HashMap<>();
+
+		try {
+			int savedUser = userService.saveOrUpdateUser(user);
+			response.put("message", "User saved with ID: " + savedUser);
+			return ResponseEntity.status(201).body(response);
+		} catch (Exception e) {
+			response.put("error", e.getMessage());
+			return ResponseEntity.status(400).body(response); // 返回400狀態碼以表示請求錯誤
+		}
+	}
+
+	/**
+	 * 用户登录
+	 * 
+	 * @param loginDTO 登录数据传输对象
+	 * @return 令牌数据传输对象
+	 */
+	@PostMapping("/login")
+	public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO loginDTO) {
+		return ResponseEntity.ok(customUserDetailsService.authenticate(loginDTO));
+	}
 }
