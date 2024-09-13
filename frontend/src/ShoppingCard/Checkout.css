@@ -1,0 +1,108 @@
+/* 控制页面内容的最大宽度和居中对齐 */
+.pageWrapper {
+    max-width: 1200px; /* 最大宽度 */
+    margin: 0 auto; /* 居中对齐 */
+    padding: 0 16px; /* 内边距，确保内容不紧贴页面边缘 */
+}
+
+/* 处理购物车为空时的样式 */
+.emptyCartMessage {
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 水平居中对齐 */
+    justify-content: center; /* 垂直居中对齐 */
+    height: 100vh; /* 使容器填满视口高度 */
+    text-align: center; /* 文字居中对齐 */
+}
+
+.emptyCartMessage a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5px 0; /* 增加链接间距 */
+}
+
+.emptyCartMessage a:hover {
+    text-decoration: underline;
+}
+
+/* 购物车容器 */
+.cartContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* 购物车部分样式 */
+#cartSection {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* 卡片间距 */
+}
+
+/* 结账部分样式 */
+#checkoutSection {
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 水平居中对齐 */
+    justify-content: center; /* 垂直居中对齐 */
+    text-align: center; /* 文字居中对齐 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 16px; /* 各元素之间的间距 */
+}
+
+.checkoutButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.checkoutButton:hover {
+    background-color: #0056b3;
+}
+
+/* 卡片样式 */
+.cartItemCard {
+    display: flex;
+    align-items: center; /* 垂直居中对齐图片和文字 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 16px; /* 图片和文字之间的间距 */
+    width: 100%; /* 确保卡片宽度可以调整 */
+}
+
+/* 图片样式，适应卡片大小 */
+.cartItemCard img {
+    width: 200px; /* 固定图片宽度 */
+    height: 200px; /* 固定图片高度 */
+    object-fit: contain; /* 保持图片比例，填满容器 */
+    border-radius: 4px;
+}
+
+/* 文字样式 */
+.textContent {
+    display: flex;
+    flex-direction: column; /* 文字从上到下排列 */
+    justify-content: center; /* 垂直居中对齐文字 */
+}
+
+.textContent p {
+    margin: 8px 0;
+    font-size: 20px;
+    width: 100%; /* 确保文本占满整行 */
+    text-align: left; /* 文本左对齐 */
+}
