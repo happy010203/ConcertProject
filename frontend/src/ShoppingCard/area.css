@@ -1,0 +1,195 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0; 
+}
+.seating-chart {
+  width: 800px;
+  height: 650px;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.stage {
+  width: 200px;
+  height: 50px;
+  background-color: #FF5722;
+  position: absolute;
+  top: 20px;
+  left: 47.125%;
+  transform: translateX(-50%);
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  border-radius: 5px;
+}
+.section {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+.section:hover {
+  transform: scale(1.05);
+}
+.section-a { width: 150px; height: 200px; background-color: #4CAF50; top: 100px; left: 305px; }
+.section-b { width: 100px; height: 200px; background-color: #9C27B0; top: 100px; left: 180px; }
+.section-c { width: 100px; height: 200px; background-color: #E91E63; top: 100px; right: 220px; }
+.section-d { width: 500px; height: 100px; background-color: #FFC107; bottom: 180px; left: 130px; border-radius: 250px 250px 0 0; }
+.section-e { width: 600px; height: 80px; background-color: #FF9800; bottom: 80px; left: 80px; border-radius: 300px 300px 0 0; }
+.confirm-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.confirm-button:hover {
+  background-color: #1976D2;
+}
+.confirm-button:active {
+  background-color: #2196F3;
+  color: white;
+}
+.checkout-container {
+  position: absolute;
+  bottom: 10px; /* 距離底部 10px */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.checkout-button {
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  margin-left: 335px;
+  margin-right: auto;
+}
+.checkout-button:hover {
+  background-color: #1976D2;
+}
+.checkout-button:active {
+  background-color: #2196F3;
+  color: white;
+}
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.seats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.seat-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.seat {
+  width: 35px;
+  height: 30px;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.seat:hover {
+  background-color: rgb(171, 162, 162);
+  text-decoration: none;
+  cursor: pointer;
+}
+.seat.selected {
+  background-color: #2196F3;
+  color: white;
+}
+.seat:active {
+background-color: rgb(29, 60, 137); /* 點擊座位時的背景顏色 */
+}
+.seat-info {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  width: 150px;
+  background-color: rgba(225, 224, 239, 0.9);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.seat-info h3 {
+  margin-top: 0;
+  font-size: 14px;
+  text-align: center;
+}
+.seat-info ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.seat-info li {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.selected-seats {
+  margin: 20px;
+  text-align: center;
+  font-size: 16px;
+}
