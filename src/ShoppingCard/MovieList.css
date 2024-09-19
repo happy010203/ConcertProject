@@ -1,0 +1,61 @@
+/* 設定最大寬度和居中對齊 */
+.pageContainer {
+    max-width: 1200px; /* 设置最大宽度 */
+    margin: 0 auto; /* 居中对齐，左右留白 */
+    padding: 0 16px; /* 添加内边距以确保内容与页面边缘有间距 */
+}
+
+/* 設定電影網格佈局 */
+.movieContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 每行5列 */
+    gap: 16px; /* 列间距 */
+    justify-content: center; /* 居中对齐网格内容 */
+    padding: 16px; /* 容器内边距 */
+}
+
+/* 設定電影卡片樣式 */
+.movieBorder {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center; /* 内容居中 */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 設定圖片樣式 */
+.imgMovieList {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* 线上购票按钮样式 */
+.btn {
+    background-color: #007bff; /* 按钮背景色 */
+    color: #fff; /* 按钮文字颜色 */
+    border: none; /* 去掉默认边框 */
+    border-radius: 5px; /* 圆角效果 */
+    padding: 10px 20px; /* 内边距：上下 10px，左右 20px */
+    margin-top: 10px;
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标悬停时显示手形光标 */
+    text-align: center; /* 文本居中 */
+    text-decoration: none; /* 去掉文本下划线 */
+    display: inline-block; /* 使按钮在同一行内显示 星星蝶舞 怪誕小鎮*/
+    transition: background-color 0.3s, transform 0.3s; /* 添加平滑过渡效果 */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* 悬停时背景色 */
+    transform: scale(1.05); /* 悬停时轻微放大按钮 */
+}
+
+.btn:focus {
+    outline: none; /* 去掉焦点边框 */
+}
