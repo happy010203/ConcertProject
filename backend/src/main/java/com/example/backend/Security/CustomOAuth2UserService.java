@@ -16,25 +16,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-    @Override
-    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        OAuth2User oAuth2User = super.loadUser(userRequest); // 獲取默認的 OAuth2User
+	@Override
+	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+	    OAuth2User oAuth2User = super.loadUser(userRequest); // 獲取默認的 OAuth2User
+	    Map<String, Object> attributes = oAuth2User.getAttributes();
 
-        Map<String, Object> attributes = oAuth2User.getAttributes();
+	    // 從 attributes 中提取角色（如果提供者有返回這些數據）
+	    @SuppressWarnings("unchecked")
+	    List<String> roles = (List<String>) attributes.getOrDefault("roles", List.of("USER")); // 默認 USER 角色
 
-        
-        @SuppressWarnings("unchecked")
-		List<String> roles = (List<String>) attributes.get("roles");
-        if (roles == null) {
-            roles = List.of("USER");
-        }
+	    // 設置權限
+	    List<GrantedAuthority> authorities = roles.stream()
+	        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))
+	        .collect(Collectors.toList());
 
-        // 設置權限
-        List<GrantedAuthority> authorities = roles.stream()
-            .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))
-            .collect(Collectors.toList());
+	    return new DefaultOAuth2User(authorities, attributes, "email"); // 使用 email 作為主識別
+	}
 
-        return new DefaultOAuth2User(authorities, attributes, "email"); // 使用 email 作為主識別
-    }
 }
 

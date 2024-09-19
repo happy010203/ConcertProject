@@ -83,6 +83,4 @@ public class UserDTO {
 	public void setCreatedTime(LocalDateTime createdTime) {
 		this.createdTime = createdTime;
 	}
-	
-
 }

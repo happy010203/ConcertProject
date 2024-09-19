@@ -1,4 +1,4 @@
-package com.example.backend.Config;
+package com.example.backend.Security;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.example.backend.Service.JwtService;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.servlet.FilterChain;

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.backend.DTO.MovieDTO;
 import com.example.backend.DTO.NewsDTO;
 import com.example.backend.Entity.Movie;
+import com.example.backend.Entity.News;
 import com.example.backend.Entity.Ticket;
 import com.example.backend.Entity.User;
 import com.example.backend.Repo.TicketRepo;
@@ -79,11 +80,6 @@ public class AdminController {
         }
     }
     
-    @PutMapping("/{id}/role")
-    public User updateUserRole(@PathVariable Integer id, @RequestParam String role) {
-        return userService.updateUserRole(id, role);
-    }
-    
     @PutMapping("/movie/{id}/update")
     public ResponseEntity<Movie> updateMovie(
         @PathVariable Integer id,
@@ -111,10 +107,13 @@ public class AdminController {
         }
     }
 	
-	@PostMapping("/{id}/delete-news")
-	public ResponseEntity<String> deletedbyId(@PathVariable int id,NewsDTO newsDTO) {
-		String response = newsService.deletedById(id, newsDTO);
-        return ResponseEntity.ok(response);
+    @PutMapping("/news/{id}/update")
+	public ResponseEntity<News> updateNews(@PathVariable Integer id,
+	        @ModelAttribute NewsDTO newsDTO, 
+	        @RequestParam(required = false) MultipartFile file) throws IOException{
+    	News updatedNews = newsService.updateNews(id, newsDTO, file);
+        
+        return ResponseEntity.ok(updatedNews);
 	}
 }
 

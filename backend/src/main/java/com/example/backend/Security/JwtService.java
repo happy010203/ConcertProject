@@ -1,4 +1,4 @@
-package com.example.backend.Service;
+package com.example.backend.Security;
 
 import java.security.Key;
 import java.util.Date;
@@ -39,11 +39,12 @@ public class JwtService {
         return generateToken(Map.of(), email, 1000 * 60 * 60); // 默認有效期為 1 小時
     }
     
-    public String generateToken(String email, List<String> roles) { //第三方登入
+    public String generateToken(String email, List<String> roles) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", roles);
+        claims.put("roles", roles); // 將角色添加到 Claims 中
         return generateToken(claims, email, 1000 * 60 * 60 * 24); // Token 有效期設為 24 小時
     }
+
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();

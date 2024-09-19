@@ -1,4 +1,4 @@
-package com.example.backend.Config;
+package com.example.backend.Security;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
-import com.example.backend.Security.CustomOAuth2UserService;
-import com.example.backend.Service.JwtService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
@@ -47,7 +45,8 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/api/movie/**").permitAll()
                 .requestMatchers("/img/**", "/news/**").permitAll()
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers("/api/manager/**").hasRole("MANAGER")
+                .requestMatchers("/api/admin/**").hasAnyRole("ADMIN", "MANAGER")
                 .requestMatchers("/api/user/**").hasRole("USER")
                 .anyRequest().authenticated()
             )
@@ -59,11 +58,12 @@ public class SecurityConfiguration {
                     // 從 OAuth2User 提取 email 和 name
                     OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
                     String email = oAuth2User.getAttribute("email");
-                    String name = oAuth2User.getAttribute("name"); // 假設 OAuth2 provider 提供 name 屬性
+                    String name = oAuth2User.getAttribute("name");
 
                     // 提取角色信息
                     List<String> roles = oAuth2User.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority)
+                        .map(role -> role.replace("ROLE_", ""))
                         .collect(Collectors.toList());
 
                     // 生成 JWT token，包含 email 和角色信息
@@ -82,8 +82,6 @@ public class SecurityConfiguration {
 
         return http.build();
     }
-
-
 }
 
 

@@ -27,7 +27,7 @@ import com.example.backend.Entity.Role;
 import com.example.backend.Entity.User;
 import com.example.backend.Repo.UserRepo;
 import com.example.backend.Security.CustomUserDetails;
-import com.example.backend.Service.JwtService;
+import com.example.backend.Security.JwtService;
 import com.example.backend.Service.UserService;
 
 import jakarta.transaction.Transactional;

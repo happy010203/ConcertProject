@@ -11,6 +11,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
+	
+	private static final long serialVersionUID = 1L; // 設置 serialVersionUID
 
     private final User user;
 
@@ -54,3 +56,4 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
 }
+

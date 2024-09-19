@@ -14,8 +14,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.backend.DTO.MovieDTO;
 import com.example.backend.DTO.NewsDTO;
+import com.example.backend.Entity.Movie;
 import com.example.backend.Entity.News;
+import com.example.backend.Entity.Movie.Status;
 import com.example.backend.Repo.NewsRepo;
 import com.example.backend.Service.NewsService;
 
@@ -80,20 +83,51 @@ public class NewsImpl implements NewsService{
 	}
 
 	@Override
-	@Transactional
-	public String deletedById(int id, NewsDTO newsDTO) {
-	    try {
-	        if (newsRepo.existsById(id)) {
-	            newsRepo.deleteById(id);
-	            return "News deleted successfully!";
-	        } else {
-	            return "Can't find this news with ID: " + id;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return "Failed to delete news due to an error: " + e.getMessage();
-	    }
-	}
+	public News updateNews(Integer id, NewsDTO newsDTO, MultipartFile file) throws IOException {
+	     News news = newsRepo.findById(id).orElseThrow(() -> new RuntimeException("News not found"));
+
+	     // 更新电影信
+	     news.setText(newsDTO.getText());
+	     news.setCreatedTime(LocalDateTime.now());
+
+	     
+
+	     // 处理图片
+	     if (file != null && !file.isEmpty()) {
+	         // 删除旧图片文件
+	         if (news.getImg() != null) {
+	             String oldFileName = news.getImg().substring(news.getImg().lastIndexOf("/") + 1);
+	             Path oldFilePath = Paths.get(uploadPath).resolve(oldFileName);
+	             try {
+	                 Files.deleteIfExists(oldFilePath);
+	             } catch (IOException e) {
+	                 e.printStackTrace();
+	                 // 处理删除文件异常
+	             }
+	         }
+
+	         // 上传新图片
+	         String fileName = file.getOriginalFilename();
+	         Path targetPath = Paths.get(uploadPath).resolve(fileName);
+	         try {
+	             Files.createDirectories(targetPath.getParent());
+	             try (InputStream inputStream = file.getInputStream()) {
+	                 Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+	             }
+	         } catch (IOException e) {
+	             e.printStackTrace();
+	             // 处理上传文件异常
+	         }
+
+	         // 更新图片 URL
+	         String fileUrl = baseUrl + "/img/" + fileName;
+	         news.setImg(fileUrl);
+	     } else {
+	         // 图片未更新时保留原图片
+	         news.setImg(newsDTO.getImg());
+	     }
+	     return newsRepo.save(news);
+	 }
 
 
 }
