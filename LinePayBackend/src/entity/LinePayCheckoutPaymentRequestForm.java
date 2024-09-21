@@ -40,34 +40,34 @@ public class LinePayCheckoutPaymentRequestForm {
     @JoinColumn(name = "redirect_urls", referencedColumnName = "id", nullable = false) // 外鍵指向 RedirectUrls 的主鍵 id
     private LinePayRedirectUrls redirectUrls;
 
-	@ManyToOne
-    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id", nullable = false)
-    private Movie movie;
+	// @ManyToOne
+    // @JoinColumn(name = "movie_id", referencedColumnName = "movie_id", nullable = false)
+    // private Movie movie;
 
-	@ManyToOne
-	@JoinColumn(name = "hall_id", referencedColumnName = "hall_id", nullable = false)
-	private Halls hall;
+	// @ManyToOne
+	// @JoinColumn(name = "hall_id", referencedColumnName = "hall_id", nullable = false)
+	// private Halls hall;
 
 	//getter、setter
 	
-    public BigDecimal getAmount() {
-        if (movie != null && hall != null) {
-            BigDecimal movieQuantity = BigDecimal.valueOf(movie.getQuantity());
-            BigDecimal hallPrice = BigDecimal.valueOf(hall.getPrice());
-            return movieQuantity.multiply(hallPrice);
-        }
-        // 如果關聯不存在，則返回預設值或拋出異常
-        return BigDecimal.ZERO;
-    }
+    // public BigDecimal getAmount() {
+    //     if (movie != null && hall != null) {
+    //         BigDecimal movieQuantity = BigDecimal.valueOf(movie.getQuantity());
+    //         BigDecimal hallPrice = BigDecimal.valueOf(hall.getPrice());
+    //         return movieQuantity.multiply(hallPrice);
+    //     }
+    //     // 如果關聯不存在，則返回預設值或拋出異常
+    //     return BigDecimal.ZERO;
+    // }
 
-	// 計算 amount
-	public void setAmount() {
-		if (movie != null && hall != null) {
-			BigDecimal movieQuantity = BigDecimal.valueOf(movie.getQuantity());
-			BigDecimal hallPrice = BigDecimal.valueOf(hall.getPrice());
-			this.amount = movieQuantity.multiply(hallPrice);
-		}
-	}
+	// // 計算 amount
+	// public void setAmount() {
+	// 	if (movie != null && hall != null) {
+	// 		BigDecimal movieQuantity = BigDecimal.valueOf(movie.getQuantity());
+	// 		BigDecimal hallPrice = BigDecimal.valueOf(hall.getPrice());
+	// 		this.amount = movieQuantity.multiply(hallPrice);
+	// 	}
+	// }
 
 	public String getCurrency() {
 		return currency;
@@ -109,20 +109,28 @@ public class LinePayCheckoutPaymentRequestForm {
 		this.id = id;
 	}
 
-	public Movie getMovie() {
-		return movie;
+	// public Movie getMovie() {
+	// 	return movie;
+	// }
+
+	// public void setMovie(Movie movie) {
+	// 	this.movie = movie;
+	// }
+
+	// public Halls getHall() {
+	// 	return hall;
+	// }
+
+	// public void setHall(Halls hall) {
+	// 	this.hall = hall;
+	// }
+
+	public BigDecimal getAmount() {
+		return amount;
 	}
 
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}
-
-	public Halls getHall() {
-		return hall;
-	}
-
-	public void setHall(Halls hall) {
-		this.hall = hall;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 	
