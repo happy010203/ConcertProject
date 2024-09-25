@@ -1,0 +1,94 @@
+/* 訂單頁面外容器 */
+.pageContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 標題樣式 */
+.heading {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 無訂單時的訊息 */
+.noOrdersMessage {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+}
+
+/* 訂單列表樣式 */
+.orderList {
+    list-style: none;
+    padding: 0;
+}
+
+/* 單個訂單卡片樣式 */
+.orderItem {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 訂單細節樣式 */
+.orderDetails {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.orderDetails p {
+    margin: 10px 0;
+}
+
+.orderDetails strong {
+    color: #000;
+}
+
+/* 查看詳情按鈕 */
+.detailsButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.detailsButton:hover {
+    background-color: #45a049;
+}
+
+/* 選中的訂單詳情 */
+.selectedOrderDetails {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selectedOrderDetails p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.selectedOrderDetails strong {
+    color: #000;
+}

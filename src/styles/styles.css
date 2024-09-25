@@ -1,0 +1,37 @@
+/* 全局樣式 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* 父容器 */
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 使頁面高度至少覆蓋整個瀏覽器視窗 */
+  }
+  
+  /* 頁頭、頁尾、主體區塊 */
+  header, footer, main {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* 頁頭樣式 */
+  header {
+    background-color: #f8f9fa;
+  }
+  
+  /* 主體區域擴展，佔據剩餘空間 */
+  main {
+    flex-grow: 1;
+    background-color: #e9ecef;
+  }
+  
+  /* 頁尾樣式 */
+  footer {
+    background-color: #f8f9fa;
+  }
+  
