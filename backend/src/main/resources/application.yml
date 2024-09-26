@@ -1,0 +1,50 @@
+server:
+  port: 8443  # SSL 默認埠
+  servlet:
+    context-path: /movie
+spring:
+  datasource:
+    url: 
+    username: 
+    password: 
+    driver-class-name: 
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+        - classpath:/public/
+        - classpath:/resources/
+        - classpath:/META-INF/resources/
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 
+            client-secret: 
+            scope: 
+              - email
+              - profile
+            redirect-uri: "https://localhost:8443/oauth2/callback/google"
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+file:
+  upload-dir: src/main/resources/static/img 
+
+app:
+  base-url: http://localhost:8443/movie  # 更新 base-url 為 HTTPS
+
+
+
+
