@@ -128,7 +128,9 @@ public class UserImpl implements UserService {
             .stream()
             .map(GrantedAuthority::getAuthority)
             .collect(Collectors.toList());
-        return new TokenDTO(jwtToken, roles, user.getUsername()); 
+
+        return new TokenDTO(jwtToken, roles, user.getUsername(), user.getUser_id()); 
+
     }
 
 

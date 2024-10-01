@@ -21,6 +21,7 @@ import com.example.backend.Entity.Movie;
 import com.example.backend.Entity.News;
 import com.example.backend.Entity.Ticket;
 import com.example.backend.Entity.User;
+import com.example.backend.Repo.MovieRepo;
 import com.example.backend.Repo.TicketRepo;
 import com.example.backend.Repo.UserRepo;
 import com.example.backend.Service.MovieService;
@@ -38,6 +39,9 @@ public class AdminController {
     
     @Autowired
     private UserRepo userRepo;
+    
+    @Autowired
+    private MovieRepo movieRepo;
     
     @Autowired
     private NewsService newsService;
@@ -115,5 +119,10 @@ public class AdminController {
         
         return ResponseEntity.ok(updatedNews);
 	}
+    @GetMapping("/movies")
+    public List<Movie> getAllMovies() {
+        return movieRepo.findAll();  // 查詢並返回所有電影
+    }
+
 }
 

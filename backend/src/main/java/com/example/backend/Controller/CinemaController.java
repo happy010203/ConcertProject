@@ -51,6 +51,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.client.json.JsonFactory;
+
 
 @RestController
 @RequestMapping("/api/movie")
@@ -130,7 +132,8 @@ public class CinemaController {
 		return hallRepo.findAll();
 	}
 
-	@GetMapping("/{hallId}")
+
+	@GetMapping("/halls/{hallId}")
 	public Hall getHallById(@PathVariable("hallId") int hallId) {
 		return hallRepo.findById(hallId).orElse(null);
 	}
@@ -289,6 +292,7 @@ public class CinemaController {
 
 	@PostMapping("/google-login")
 	public ResponseEntity<?> googleLogin(@RequestBody Map<String, String> request) {
+
 	    String googleToken = request.get("token");
 
 	    com.google.api.client.json.JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
@@ -329,5 +333,62 @@ public class CinemaController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Google login error: " + e.getMessage());
 	    }
 	}
+
+        String googleToken = request.get("token");
+
+        JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), jsonFactory)
+                .setAudience(Collections.singletonList(""))
+                .build();
+
+        try {
+            GoogleIdToken idToken = verifier.verify(googleToken);
+            if (idToken != null) {
+                GoogleIdToken.Payload payload = idToken.getPayload();
+                String email = payload.getEmail();
+                String name = (String) payload.get("name");
+
+                Optional<User> optionalUser = userRepo.findByEmail(email);
+                User user;
+                if (optionalUser.isPresent()) {
+                    user = optionalUser.get();
+                } else {
+                    // Create a new user if not found
+                    user = new User();
+                    user.setEmail(email);
+                    user.setUsername(name);
+                    user.setRole(Role.USER);
+                    userRepo.save(user);
+                }
+
+                // Assuming userRepo returns a UserDetails object
+                UserDetails userDetails = new CustomUserDetails(user);
+                String jwtToken = jwtService.generateToken(userDetails);
+
+                return ResponseEntity.ok(Map.of(
+                    "token", jwtToken,
+                    "email", email,
+                    "roles", userDetails.getAuthorities().stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()),
+                    "name", name
+                ));
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid Google token"));
+            }
+        } catch (Exception e) {
+            // 捕獲所有異常並返回詳細的錯誤訊息
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Google login error: " + e.getMessage()));
+        }
+        
+    }
+	
+	@PutMapping("/update/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User updatedUser) {
+        Optional<User> updated = userService.updateUser(id, updatedUser);
+        
+        return updated.map(user -> ResponseEntity.ok(user))
+                      .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
 }
