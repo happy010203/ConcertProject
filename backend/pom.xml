@@ -33,6 +33,7 @@
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
 			<version>3.1.0</version><!--$NO-MVN-MAN-VER$-->
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -45,7 +46,7 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		  <!-- mariadb -->
+
   		<dependency>
    			<groupId>org.mariadb.jdbc</groupId>
    			<artifactId>mariadb-java-client</artifactId>
@@ -104,6 +105,7 @@
 			<version>1.18.26</version><!--$NO-MVN-MAN-VER$--> 
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
     		<groupId>javax.servlet</groupId>
     		<artifactId>javax.servlet-api</artifactId>
@@ -115,6 +117,7 @@
     		<artifactId>log4j-core</artifactId>
     		<version>2.17.1</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

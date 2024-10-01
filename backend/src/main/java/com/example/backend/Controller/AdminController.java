@@ -119,10 +119,10 @@ public class AdminController {
         
         return ResponseEntity.ok(updatedNews);
 	}
-    
     @GetMapping("/movies")
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();  // 查詢並返回所有電影
     }
+
 }
 

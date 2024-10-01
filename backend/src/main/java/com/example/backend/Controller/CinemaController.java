@@ -53,6 +53,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.json.JsonFactory;
 
+
 @RestController
 @RequestMapping("/api/movie")
 public class CinemaController {
@@ -104,11 +105,11 @@ public class CinemaController {
 	}
 	
 	@GetMapping("/movies/{id}")
-	 public ResponseEntity<Movie> getMovieById(@PathVariable int id) {
-	     return movieRepo.findById(id)
-	         .map(movie -> ResponseEntity.ok().body(movie))
-	         .orElseGet(() -> ResponseEntity.notFound().build());
-	 }
+	public ResponseEntity<Movie> getMovieById(@PathVariable int id) {
+	    return movieRepo.findById(id)
+	        .map(movie -> ResponseEntity.ok().body(movie))
+	        .orElseGet(() -> ResponseEntity.notFound().build());
+	}
 
 	@GetMapping("/news")
 	public List<News> getNews() {
@@ -130,6 +131,7 @@ public class CinemaController {
 	public List<Hall> getAllHalls() {
 		return hallRepo.findAll();
 	}
+
 
 	@GetMapping("/halls/{hallId}")
 	public Hall getHallById(@PathVariable("hallId") int hallId) {
@@ -290,6 +292,48 @@ public class CinemaController {
 
 	@PostMapping("/google-login")
 	public ResponseEntity<?> googleLogin(@RequestBody Map<String, String> request) {
+
+	    String googleToken = request.get("token");
+
+	    com.google.api.client.json.JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
+	    GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), jsonFactory)
+	            .setAudience(Collections.singletonList("210567720043-255mub33p83168jpgsoh5icunnppn1nu.apps.googleusercontent.com"))
+	            .build();
+
+	    try {
+	        GoogleIdToken idToken = verifier.verify(googleToken);
+	        if (idToken != null) {
+	            GoogleIdToken.Payload payload = idToken.getPayload();
+	            String email = payload.getEmail();
+	            String name = (String) payload.get("name");
+
+	            Optional<User> optionalUser = userRepo.findByEmail(email);
+	            User user;
+	            if (optionalUser.isPresent()) {
+	                user = optionalUser.get();
+	            } else {
+	                // Create a new user if not found
+	                user = new User();
+	                user.setEmail(email);
+	                user.setUsername(name);
+	                user.setRole(Role.USER);
+	                userRepo.save(user);
+	            }
+
+	            // Assuming userRepo returns a UserDetails object
+	            CustomUserDetails userDetails = new CustomUserDetails(user);
+	            String jwtToken = jwtService.generateToken(userDetails);
+
+	            return ResponseEntity.ok(Map.of("token", jwtToken, "email", email, "roles", userDetails.getAuthorities().stream()
+	                    .map(GrantedAuthority::getAuthority).collect(Collectors.toList()), "name", name));
+	        } else {
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Google token");
+	        }
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Google login error: " + e.getMessage());
+	    }
+	}
+
         String googleToken = request.get("token");
 
         JsonFactory jsonFactory = GsonFactory.getDefaultInstance();

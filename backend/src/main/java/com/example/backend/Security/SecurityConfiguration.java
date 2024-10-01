@@ -1,7 +1,9 @@
 package com.example.backend.Security;
 
+
 import java.util.Arrays;
 import java.util.Collections;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 public class SecurityConfiguration {
+
 
 	private final AuthenticationProvider authenticationProvider;
 	private final JwtAuthenticationFilter jwtAuthFilter;
@@ -91,3 +94,4 @@ public class SecurityConfiguration {
 		return http.build();
 	}
 }
+
