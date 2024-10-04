@@ -1,0 +1,114 @@
+/* 主體區域樣式 */
+.bodyDiv {
+    min-height: 700px;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    font-family: Arial, sans-serif;
+}
+
+.newsSection, .movieSection {
+    margin-bottom: 40px;
+}
+
+/* 最新消息區塊 */
+.newsSection h2, .movieSection h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* 輪播樣式 */
+.newsSlider, .movieSlider {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* 最新消息項目 */
+.newsItem {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.newsItem img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* 懸停效果 */
+.newsItem:hover {
+    transform: scale(1.05);
+}
+
+.newsInfo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-size: large;
+    
+}
+
+.newsItem:hover .newsInfo {
+    opacity: 1;
+}
+
+/* 現正熱映電影 */
+.movieItem {
+    text-align: center;
+}
+
+.movieItem img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.movieItem h3 {
+    color: #00aced;
+    font-size: 18px;
+}
+
+/* 調整輪播箭頭 */
+.slick-next, .slick-prev {
+    z-index: 1;
+}
+
+.slick-next {
+    right: 10px;
+}
+
+.slick-prev {
+    left: 10px;
+}
+
+/* 媒體查詢 */
+@media screen and (max-width: 850px) {
+    .movieItem img {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .movieItem img {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .movieItem img {
+        height: 150px;
+    }
+}

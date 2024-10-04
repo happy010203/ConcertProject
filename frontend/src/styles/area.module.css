@@ -1,0 +1,220 @@
+.area-body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 20px 0;
+  background-color: #f0f0f0;
+  overflow-y: auto; /* 允許網頁滾動 */
+}
+
+.area-seating-chart {
+  width: 800px;
+  height: 650px;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.area-stage {
+  width: 200px;
+  height: 50px;
+  background-color: #FF5722;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  border-radius: 5px;
+}
+
+.area-section {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 5px;
+}
+
+.area-section:hover {
+  transform: scale(1.05);
+}
+
+.area-section-a { width: 150px; height: 200px; background-color: #4CAF50; top: 100px; left: 305px; }
+.area-section-b { width: 100px; height: 200px; background-color: #9C27B0; top: 100px; left: 180px; }
+.area-section-c { width: 100px; height: 200px; background-color: #E91E63; top: 100px; right: 220px; }
+.area-section-d { width: 500px; height: 100px; background-color: #FFC107; bottom: 180px; left: 130px; border-radius: 250px 250px 0 0; }
+.area-section-e { width: 600px; height: 80px; background-color: #FF9800; bottom: 80px; left: 80px; border-radius: 300px 300px 0 0; }
+
+.area-confirm-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.area-confirm-button:hover {
+  background-color: #1976D2;
+}
+
+.area-confirm-button:active {
+  background-color: #2196F3;
+}
+
+.area-checkout-container {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.area-checkout-button {
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.area-checkout-button:hover {
+  background-color: #1976D2;
+}
+
+.area-checkout-button:active {
+  background-color: #2196F3;
+}
+
+.area-modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.area-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.area-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.area-close:hover,
+.area-close:focus {
+  color: black;
+}
+
+.area-seats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.area-seat-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.area-seat {
+  width: 35px;
+  height: 30px;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.area-seat:hover {
+  background-color: rgb(171, 162, 162);
+}
+
+.area-seat.selected {
+  background-color: #2196F3;
+  color: white;
+}
+
+.area-seat:active {
+  background-color: rgb(29, 60, 137);
+}
+
+.area-seat-info {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  width: 150px;
+  background-color: rgba(225, 224, 239, 0.9);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.area-seat-info h3 {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.area-seat-info ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.area-seat-info li {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.area-selected-seats {
+  margin: 20px;
+  text-align: center;
+  font-size: 16px;
+}
