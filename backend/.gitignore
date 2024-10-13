@@ -1,33 +1,38 @@
-HELP.md
+# 忽略編譯產物
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
+# 忽略 IDE 文件
+.idea/
 *.iml
 *.ipr
+*.iws
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# 忽略環境變量文件
+*.env
 
-### VS Code ###
-.vscode/
+# 忽略 Maven 和 Gradle 的設定文件
+*.log
+*.jar
+*.war
+*.class
+*.apk
+
+# 忽略 OS 特定的文件
+.DS_Store
+Thumbs.db
+
+# 忽略 Maven 本地存儲庫
+~/.m2/repository/
+
+# 忽略應用程式配置文件
+application.properties
+application.yml
+
+# 忽略其他開發過程中產生的文件
+*.tmp
+*.bak
+*.swp
+
+# 忽略測試報告
+target/surefire-reports/
+target/failsafe-reports/
